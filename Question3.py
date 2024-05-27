@@ -1,38 +1,8 @@
-import heapq
-
-class AStarSearch:
-    def __init__(self, graph, heuristics):
-        self.graph = graph
-        self.heuristics = heuristics
-
-    def a_star_search(self, start, goal):
-        # Priority queue: (estimated_total_cost, current_node, current_cost, path)
-        pq = [(self.heuristics[start], start, 0, [])]
-        visited = set()
-
-        while pq:
-            estimated_total_cost, current_node, current_cost, path = heapq.heappop(pq)
-
-            if current_node in visited:
-                continue
-
-            visited.add(current_node)
-            path = path + [current_node]
-
-            if current_node == goal:
-                return path, current_cost
-
-            for neighbor, travel_cost in self.graph[current_node]:
-                if neighbor not in visited:
-                    total_cost = current_cost + travel_cost
-                    estimated_cost = total_cost + self.heuristics[neighbor]
-                    heapq.heappush(pq, (estimated_cost, neighbor, total_cost, path))
-
-        return None, float('inf')
-
-
-
-
+#################################################################
+#################################################################
+#### 3. Graph representation
+#################################################################
+#################################################################
 
 
 graph = {
@@ -121,6 +91,8 @@ graph = {
     "Addis Ababa": [("Ambo", 5), ("Debre Birhan", 5), ("Adama", 3), ("Debre Markos", 13)]
 }
 
+# heuristic values
+
 heuristics = {
     "Kartum": 81,
     "Humera": 65,
@@ -206,6 +178,51 @@ heuristics = {
     "Debre Birhan": 31,
     "Addis Ababa": 26
 }
+
+
+#################################################################
+#################################################################
+#### 3. Implementation
+#################################################################
+#################################################################
+
+
+import heapq
+
+class AStarSearch:
+    def __init__(self, graph, heuristics):
+        self.graph = graph
+        self.heuristics = heuristics
+
+    def a_star_search(self, start, goal):
+        # Priority queue: (estimated_total_cost, current_node, current_cost, path)
+        pq = [(self.heuristics[start], start, 0, [])]
+        visited = set()
+
+        while pq:
+            estimated_total_cost, current_node, current_cost, path = heapq.heappop(pq)
+
+            if current_node in visited:
+                continue
+
+            visited.add(current_node)
+            path = path + [current_node]
+
+            if current_node == goal:
+                return path, current_cost
+
+            for neighbor, travel_cost in self.graph[current_node]:
+                if neighbor not in visited:
+                    total_cost = current_cost + travel_cost
+                    estimated_cost = total_cost + self.heuristics[neighbor]
+                    heapq.heappush(pq, (estimated_cost, neighbor, total_cost, path))
+
+        return None, float('inf')
+
+
+
+
+# Function Calls
 
 
 astar = AStarSearch(graph, heuristics)
