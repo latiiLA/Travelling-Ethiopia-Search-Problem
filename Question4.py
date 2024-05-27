@@ -1,3 +1,49 @@
+#################################################################
+#################################################################
+#### 4. Graph representation 
+#################################################################
+#################################################################
+
+
+
+graph = {
+    "Addis Ababa": ["Ambo", "Buta Jirra", "Adama"],
+    "Adama": ["Addis Ababa", "Dire Dawa", "Mojo"],
+    "Mojo": ["Kaffa", "Dilla"],
+    "Dire Dawa": ["Chiro", "Harar"],
+    "Buta Jirra": ["Addis Ababa", "Wolkite", "Worabe"],
+    "Wolkite": ["Tepi", "Bench Naji"],
+    "Worabe": ["Durame", "Hossana"],
+    "Ambo": ["Nekemte", "Gedo"],
+    "Nekemte": ["Limu", "Gimbi"],
+    "Gedo": ["Shambu", "Fincha"]
+}
+
+# Utilities
+
+utilities = {
+    "Harar": 10,
+    "Chiro": 6,
+    "Dilla": 9,
+    "Kaffa": 7,
+    "Tepi": 6,
+    "Bench Naji": 5,
+    "Durame": 5,
+    "Hossana": 6,
+    "Limu": 8,
+    "Gimbi": 8,
+    "Shambu": 4,
+    "Fincha": 5
+}
+
+
+#################################################################
+#################################################################
+#### 4. Implementation
+#################################################################
+#################################################################
+
+
 class MiniMaxSearch:
     def __init__(self, graph, utilities):
         self.graph = graph
@@ -34,35 +80,7 @@ class MiniMaxSearch:
     
 
 
-
-graph = {
-    "Addis Ababa": ["Ambo", "Buta Jirra", "Adama"],
-    "Adama": ["Addis Ababa", "Dire Dawa", "Mojo"],
-    "Mojo": ["Kaffa", "Dilla"],
-    "Dire Dawa": ["Chiro", "Harar"],
-    "Buta Jirra": ["Addis Ababa", "Wolkite", "Worabe"],
-    "Wolkite": ["Tepi", "Bench Naji"],
-    "Worabe": ["Durame", "Hossana"],
-    "Ambo": ["Nekemte", "Gedo"],
-    "Nekemte": ["Limu", "Gimbi"],
-    "Gedo": ["Shambu", "Fincha"]
-}
-
-utilities = {
-    "Harar": 10,
-    "Chiro": 6,
-    "Dilla": 9,
-    "Kaffa": 7,
-    "Tepi": 6,
-    "Bench Naji": 5,
-    "Durame": 5,
-    "Hossana": 6,
-    "Limu": 8,
-    "Gimbi": 8,
-    "Shambu": 4,
-    "Fincha": 5
-}
-
+# Function Calls
 
 minimax_search = MiniMaxSearch(graph, utilities)
 best_path, best_value = minimax_search.find_best_path("Addis Ababa", 3)  # Depth can be adjusted
