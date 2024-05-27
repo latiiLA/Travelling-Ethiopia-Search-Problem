@@ -1,33 +1,9 @@
-from queue import PriorityQueue
 
-def uniform_cost_search(graph, start, goal):
-    frontier = PriorityQueue()
-    frontier.put((0, start))
-    came_from = {}
-    cost_so_far = {start: 0}
-
-    while not frontier.empty():
-        current_cost, current_node = frontier.get()
-
-        if current_node == goal:
-            break
-
-        for neighbor, cost in graph[current_node]:
-            new_cost = cost_so_far[current_node] + cost
-            if neighbor not in cost_so_far or new_cost < cost_so_far[neighbor]:
-                cost_so_far[neighbor] = new_cost
-                priority = new_cost
-                frontier.put((priority, neighbor))
-                came_from[neighbor] = current_node
-
-    path = [goal]
-    while goal != start:
-        goal = came_from[goal]
-        path.append(goal)
-    path.reverse()
-    return path
-
-
+#################################################################
+#################################################################
+#### 2.1 Graph Representation
+#################################################################
+#################################################################
 
 graph = {
     "Kartum": [("Humera", 21), ("Metema", 19)],
@@ -115,19 +91,57 @@ graph = {
     "Addis Ababa": [("Ambo", 5), ("Debre Birhan", 5), ("Adama", 3)]
 }
 
-
 # NOTES   
-# Bedelle to Nekemete Value is not given in the figure--- Therefore 0(zero) is taken
-# Arbaminch to Nekemete Value is not given in the figure--- Therefore 0(zero) is taken
+# Bedelle to Nekemete cost value is not given in the figure--- Therefore 0(zero) is taken
+# Arbaminch to Nekemete const value is not given in the figure--- Therefore 0(zero) is taken
 
+
+
+#################################################################
+#################################################################
+#### 2.2 Implementation
+#################################################################
+#################################################################
+
+from queue import PriorityQueue
+
+def uniform_cost_search(graph, start, goal):
+    frontier = PriorityQueue()
+    frontier.put((0, start))
+    came_from = {}
+    cost_so_far = {start: 0}
+
+    while not frontier.empty():
+        current_cost, current_node = frontier.get()
+
+        if current_node == goal:
+            break
+
+        for neighbor, cost in graph[current_node]:
+            new_cost = cost_so_far[current_node] + cost
+            if neighbor not in cost_so_far or new_cost < cost_so_far[neighbor]:
+                cost_so_far[neighbor] = new_cost
+                priority = new_cost
+                frontier.put((priority, neighbor))
+                came_from[neighbor] = current_node
+
+    path = [goal]
+    while goal != start:
+        goal = came_from[goal]
+        path.append(goal)
+    path.reverse()
+    return path
+
+
+
+# Function Calls
 
 start = 'Addis Ababa'
 goal = 'Lalibela'
 
 path = uniform_cost_search(graph, start, goal)
-print(f"Path from {start} to {goal}: {path}")
-
-
+print("Result for 2.2 sub question")
+print(f"Path from {start} to {goal}: {path}\n\n")
 
 
 
@@ -135,7 +149,7 @@ print(f"Path from {start} to {goal}: {path}")
 
 #################################################################
 #################################################################
-#### 2.3 
+#### 2.3 Implementation
 #################################################################
 #################################################################
 
@@ -178,9 +192,12 @@ class MultiGoalUCS:
         return None, float('inf')
 
 
-goals = ["Axum", "Gondar", "Lalibela", "Babile", "Jimma", "Bale", "Sof Oumer", "Arba Minch"]
+# Function Calls
+
+goals = ["Axum", "Gondar", "Lalibela", "Babile", "Jimma", "Bale", "Sof Oumer", "Arba Minch"] # Defined in the question
 
 ucs = MultiGoalUCS(graph)
 path, cost = ucs.uniform_cost_search("Addis Ababa", goals)
+print("Result for 2.3 sub question")
 print(f"Path: {path}")
 print(f"Total cost: {cost}")
