@@ -1,57 +1,8 @@
-from collections import deque
-
-class GraphSearch:
-    def __init__(self, graph, initial_state, goal_state, strategy='BFS'):
-        self.graph = graph
-        self.initial_state = initial_state
-        self.goal_state = goal_state
-        self.strategy = strategy
-
-    def bfs(self):
-        queue = deque([(self.initial_state, [self.initial_state])])
-        visited = set()
-
-        while queue:
-            node, path = queue.popleft()
-
-            if node == self.goal_state:
-                return path
-
-            if node not in visited:
-                visited.add(node)
-                for neighbor in self.graph.get(node, []):
-                    if neighbor not in visited:
-                        queue.append((neighbor, path + [neighbor]))
-
-        return None
-
-    def dfs(self):
-        stack = [(self.initial_state, [self.initial_state])]
-        visited = set()
-
-        while stack:
-            node, path = stack.pop()
-
-            if node == self.goal_state:
-                return path
-
-            if node not in visited:
-                visited.add(node)
-                for neighbor in self.graph.get(node, []):
-                    if neighbor not in visited:
-                        stack.append((neighbor, path + [neighbor]))
-
-        return None
-
-    def search(self):
-        if self.strategy == '1':
-            return self.dfs()
-        elif self.strategy == '2':
-            return self.bfs()
-        else:
-            raise ValueError("Unsupported search strategy. Use 'BFS' or 'DFS'.")
-
-
+#################################################################
+#################################################################
+#### 2.1 Graph Representation
+#################################################################
+#################################################################
 
 
 graph = {
@@ -139,6 +90,72 @@ graph = {
     "Debre Birhan": ["Debre Sina", "Addis Ababa"],
     "Addis Ababa": ["Ambo", "Debre Birhan", "Adama"]
 }
+
+
+
+
+#################################################################
+#################################################################
+#### 2.2 BFS and DFS Implementations
+#################################################################
+#################################################################
+
+
+from collections import deque
+
+class GraphSearch:
+    def __init__(self, graph, initial_state, goal_state, strategy='BFS'):
+        self.graph = graph
+        self.initial_state = initial_state
+        self.goal_state = goal_state
+        self.strategy = strategy
+
+    def bfs(self):
+        queue = deque([(self.initial_state, [self.initial_state])])
+        visited = set()
+
+        while queue:
+            node, path = queue.popleft()
+
+            if node == self.goal_state:
+                return path
+
+            if node not in visited:
+                visited.add(node)
+                for neighbor in self.graph.get(node, []):
+                    if neighbor not in visited:
+                        queue.append((neighbor, path + [neighbor]))
+
+        return None
+
+    def dfs(self):
+        stack = [(self.initial_state, [self.initial_state])]
+        visited = set()
+
+        while stack:
+            node, path = stack.pop()
+
+            if node == self.goal_state:
+                return path
+
+            if node not in visited:
+                visited.add(node)
+                for neighbor in self.graph.get(node, []):
+                    if neighbor not in visited:
+                        stack.append((neighbor, path + [neighbor]))
+
+        return None
+
+    def search(self):
+        if self.strategy == '1':
+            return self.dfs()
+        elif self.strategy == '2':
+            return self.bfs()
+        else:
+            raise ValueError("Unsupported search strategy. Use 'BFS' or 'DFS'.")
+
+
+# Function Calls
 
 # Manual initialization
 # initial_state = 'Nekemete'
