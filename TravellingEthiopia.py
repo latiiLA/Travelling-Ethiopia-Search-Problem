@@ -1,4 +1,14 @@
 '''
+    Informed Search Algorithms - Configurable Search Platform
+
+    Enclosed a Model of a search problem, Traveling Ethiopia. 
+    Write a working class that accept any strategy and Traveling Ethiopia problem, and return with a path/s from the initial state to the goal state/s. 
+    Use any programming language
+
+    Figure 3 Travelling Ethiopia.jpg
+    Figure link: https://drive.google.com/file/d/19PAu0Vf5ot5C6oejs9_epMAGlJng9ADY/view?usp=classroom_web&authuser=0
+'''
+'''
     Class Definition
 
 '''
