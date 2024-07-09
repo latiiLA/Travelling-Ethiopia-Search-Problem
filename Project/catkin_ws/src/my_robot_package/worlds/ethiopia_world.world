@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="ethiopia_world">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- Define the robot model -->
+    <include>
+      <uri>model://three_wheel_robot</uri>
+      <pose>0 0 0.1 0 0 0</pose>
+    </include>
+
+    <!-- Define other models for states -->
+    <model name="Dembi_Dollo">
+      <pose>0 0 0 0 0 0</pose>
+      <link name="visual">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="Gimbi">
+      <pose>1 1 0 0 0 0</pose>
+      <link name="visual">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <!-- Add more models for other states as needed -->
+  </world>
+</sdf>
